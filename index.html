@@ -16,6 +16,7 @@
               <h1 id="logoName" class="text-white text-xl font-bold cursor-pointer">Book store</h1>
             </div>
             <button id="cartIcon">
+              <p id="countCart" class="text-xl font-bold text-white">0</p>
               <svg
                 version="1.1"
                 fill="#fff"
@@ -54,21 +55,31 @@
     
     <!-- Page Books-->
     <div
-      id="containerBooks"
+      id="pageBooks"
       class="flex flex-wrap  justify-center items-center gap-8 mt-8"
     ></div>
 
      <!-- Page Cart-->
     <div
-    id="containerCart"
+    id="pageCart"
     class="font-sans hidden  bg-white py-4">
-      <div class="grid grid-cols-3 gap-4 ">
+      <div class="grid  gap-4 ">
         <div id="containerProductCart" class="col-span-2 bg-gray-100 p-4 rounded-md">
           <h2 class="text-2xl font-bold text-gray-800">Cart</h2>
           <hr class="border-gray-300 mt-4 mb-8" />
-
-       
         </div>
+      </div>
+    </div>
+
+    <!-- Cart empty -->
+    <div id="pageCartEmpty" class="flex h-screen h-full hidden  place-content-center bg-white px-4">
+      <div class="text-center">
+        
+       <img class="w-56" src="assets/empty.png"/>
+    
+        <h1 class="mt-6 text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl">Carrito vacio</h1>
+    
+        <p class="mt-4 text-gray-500">Tu carrito no tiene libros añadidos.</p>
       </div>
     </div>
 

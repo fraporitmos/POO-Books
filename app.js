@@ -21,7 +21,7 @@ const book2 = new Book(
 )
 
 const comic1 = new Comic(
-    1, 
+    3, 
     "Batman: Year One Deluxe",
     "Frank Miller ",
     "Marvel",
@@ -31,38 +31,93 @@ const comic1 = new Comic(
     "David Mazzucchelli"
 )
 
+const arrayBooks = [book1, book2, comic1]
 
 const productsCart = new Cart()
-productsCart.addToCart(book1)
-productsCart.addToCart(book2)
-productsCart.addToCart(comic1)
 
 
+const pageBooks = document.getElementById("pageBooks")
+const pageCart = document.getElementById("pageCart")
+const pageCartEmpty = document.getElementById("pageCartEmpty")
 
 
-const containerBooks = document.getElementById("containerBooks")
-const containerCart = document.getElementById("containerCart")
 const logoName = document.getElementById("logoName")
 const cartIcon = document.getElementById("cartIcon")
 const containerProductCart = document.getElementById("containerProductCart")
+const countCart = document.getElementById("countCart")
 
-containerBooks.innerHTML = book1.drawCardBook()
-containerBooks.innerHTML += book2.drawCardBook()
-containerBooks.innerHTML += comic1.drawCardBook()
+
+const showBooksPage = () => {
+    //ocultamos las dos paginas de carrito
+    pageCartEmpty.classList.add("hidden")
+    pageCart.classList.add("hidden")
+    //mostrar la pagina de libros
+    pageBooks.classList.remove("hidden")
+}
+
+const showCartPageEmtpy = () => {
+    //ocultamos la pagina de libros y del carrito
+    pageCart.classList.add("hidden")
+    pageBooks.classList.add("hidden")
+    //mostrar pagina del carrito vacio
+    pageCartEmpty.classList.remove("hidden")
+}
+
+
+const showCartPage = () => {
+    //ocultamos la pagina de libros y del carrito vacio
+    pageBooks.classList.add("hidden")
+    pageCartEmpty.classList.add("hidden")
+    //mostrar pagina del carrito 
+    pageCart.classList.remove("hidden")
+}
+
+pageBooks.innerHTML = book1.drawCardBook()
+pageBooks.innerHTML += book2.drawCardBook()
+pageBooks.innerHTML += comic1.drawCardBook()
 
 
 cartIcon.addEventListener('click', ()=>{
     //agregar clase desde js
-    containerBooks.classList.add("hidden")
-    containerCart.classList.remove("hidden")
+    showBooksCart()
 })
 
 logoName.addEventListener('click', ()=>{
     //agregar clase desde js
-    containerCart.classList.add("hidden")
-    containerBooks.classList.remove("hidden")
+    showBooksPage()
 })
 
-productsCart.cart.forEach(item=>{
-    containerProductCart.innerHTML += productsCart.drawOrderCard(item)
+const showBooksCart = () => {
+    if(productsCart.cart.length > 0){
+        showCartPage()
+        showOrderCart()
+    }else{
+        showCartPageEmtpy()
+    }
+}
+
+
+const showOrderCart = () =>{
+    containerProductCart.innerHTML = ""
+    productsCart.cart.forEach(item=>{
+        containerProductCart.innerHTML += productsCart.drawOrderCard(item)
+    })
+}
+
+//Detectar un evento de manera general
+document.addEventListener('click', (event) =>{
+    if(event.target.getAttribute("attr-custom-btn")){
+        const idBook = parseInt(event.target.getAttribute("attr-custom-btn"))
+        const book = arrayBooks.find( item => item.id === idBook)
+        productsCart.addToCart(book)
+        countCart.innerHTML = productsCart.cart.length
+    }
+
+    if(event.target.getAttribute("attr-custom-cart")){
+       const idBook = parseInt(event.target.getAttribute("attr-custom-cart"))
+       productsCart.removeToCart(idBook)
+       showOrderCart()
+       countCart.innerHTML = productsCart.cart.length
+       showBooksCart()
+    }
 })

@@ -37,6 +37,16 @@ class Book {
                 <p class="text-gray-800 dark:text-white">${this.author}</p>
               </div>
             </div>
+
+
+             <button
+              type="button"
+              attr-custom-btn=${this.id}
+              class="py-2 px-4 mt-4 bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
+              Agregar al carrito
+            </button>
+        
+
           </div>
         </a>
       </div>
