@@ -10,6 +10,7 @@ class Book {
         this.price = _price
         this.img = _img
         this.discount = 0
+        this.type = "book"
 
     }
 

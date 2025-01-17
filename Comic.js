@@ -5,7 +5,7 @@ class Comic extends Book {
         super(_id, _name, _author, _editorial,_description,_price, _img)
 
         this.ilustrator = _ilustrator
-        this.type = "Comic",
+        this.type = "comic",
         this.discount = 10
     }
 
